@@ -1,62 +1,144 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "height": 500,
-    "width": 500,
-    "title": "Population Per Country 2020",
-    "data": {
-      "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
-    },
-      "params": [
-      {
-        "name": "Fert. Rate",
-  
-        "value": 0,
-        "bind": {"input": "range", "min": 0, "max": 100000000, "step": 1000000}
-      }
-    ],
-    "selection": {
-      "continent_selection": {
-        "type": "multi", "fields": ["Continent"], "bind": "legend"
-      }
-    },
-    "transform":[
-      {"filter": "datum.Active > 0"},
-      {"filter": "datum.Deaths > 0"},
-      {"filter": "datum.Fert. Rate > Fert. Rate"},
-      {"calculate": "datum.Confirmed/datum.Fert. Rate", "as": "Cases per 10,000 Population"}
-    ],
-    "mark": "point",
-    "encoding": {
-      "x": {
-        "field": "Confirmed",
-        "type": "quantitative",
-        "title":"Confirmed Cases",
-        "axis": {"tickCount": 7},
-        "scale": {"type": "log",  "domain":[1, 10000000]}
-      },
-      "y": {
-        "field": "Deaths",
-        "type": "quantitative",
-        "axis": { "tickCount": 6},
-        "scale": {"type": "log", "domain":[1, 1000000]}
-      },
-      "size": {"field": "Population", "type": "quantitative",  "scale": {"range": [30, 500]}
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Fertility Rate Vs Median Age",
+  "width": "container",
+  "data": {
+    "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
   },
-      "fill": {"field": "Continent",  "type": "nominal","scale": {"domain":["North America", "South America", "Europe", "Africa", "Asia", "Oceania"], "range": ["#e41a1c", "#984ea3", "#ff7f00", "#a6cee3", "#377eb8", "#a65628"]}},
-      "color": {"field": "Continent", "type": "nominal","scale": {"domain":["North America", "South America", "Europe", "Africa", "Asia", "Oceania"],"range": ["#e41a1c", "#984ea3", "#ff7f00", "#a6cee3", "#377eb8", "#a65628"]}
-      },
-      "opacity": {
-        "condition": {"selection": "continent_selection", "value": 0.8},
-        "value": 0.2
-      },
-      "tooltip": [
-        {"field": "Country", "type": "nominal"},
-        {"field": "Confirmed", "type": "quantitative", "format": ","},
-        {"field": "Active", "type": "quantitative", "format": ","},
-        {"field": "Deaths", "type": "quantitative", "format": ","},
-        {"field": "Recovered", "type": "quantitative", "format": ","}
-      ]
-  
+  "params": [
+    {
+      "name": "Age_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 60,
+        "step": 5,
+        "name": "Minimum Age: " 
+      }
+    },
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "name": "Continent Selection: " 
+      }
     }
-  }
-  
+  ],
+  "transform": [
+    {"calculate": "datum['Fert. Rate'] === 'N.A.' ? null : +datum['Fert. Rate']", "as": "Fert. Rate"},
+    {"calculate": "datum['Med. Age'] === 'N.A.' ? null : +datum['Med. Age']", "as": "Med. Age"},
+    {"filter": "datum['Fert. Rate'] !== null && datum['Med. Age'] !== null"},
+    {"filter": "datum['Med. Age'] > Age_Above"}, 
+    {"filter": "Continent_selection == null || datum.Continent == Continent_selection"},
+    {
+      "calculate": "datum['Fert. Rate'] + ' %'",
+      "as": "Fertility Percent"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Med. Age",
+      "type": "quantitative",
+      "title": "Median Age",
+      "axis": {"tickCount": 5},
+      "scale": {"domain": [0, 55]}
+    },
+    "y": {
+      "field": "Fert. Rate",
+      "type": "quantitative",
+      "title": "Fertility Rate",
+      "axis": {"tickCount": 4},
+      "scale": {"domain": [0, 8]}
+    }
+  },
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "Population (2020)",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1000000, 10000000, 50000000, 100000000, 500000000],
+            "range": [10, 50, 150, 200, 300, 400]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "North America",
+              "South America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": {"value": 0.6},
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "Fertility Percent", "title": "Fertility Rate", "type": "nominal"}, 
+          {"field": "Med. Age", "title": "Median Age", "type": "quantitative", "format": ","}
+      ]      
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "Country", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['Country'] == 'Japan'",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "Country", "type": "nominal"},
+          {"field": "Fertility Percent", "title": "Fertility Rate", "type": "quantitative", "format": ","},
+          {"field": "Med. Age", "title": "Median Age", "type": "quantitative", "format": ","}
+      ]      
+      }
+    }
+  ]
+}
