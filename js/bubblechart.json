@@ -128,7 +128,7 @@
         "color": {"value": "black"},
         "opacity": {
           "condition": {
-            "test": "datum['Country'] == 'Japan'",
+            "test": "datum['Country'] == 'Australia'",
             "value": 1
           },
           "value": 0
