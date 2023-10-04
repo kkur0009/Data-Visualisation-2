@@ -38,7 +38,7 @@
             "lookup": "properties.NAME_LONG",
             "from": {
               "data": {
-                "url": "https://raw.githubusercontent.com/kkur0009/FIT3179/main/population_by_country_2020.csv"
+                "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
               },
               "key": "Country",
               "fields": ["Population (2020)"]
