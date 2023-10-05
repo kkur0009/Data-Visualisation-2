@@ -7,14 +7,14 @@
   },
   "params": [
     {
-      "name": "Age_Above",
+      "name": "Population_Above",
       "value": 0,
       "bind": {
         "input": "range",
         "min": 0,
-        "max": 60,
-        "step": 5,
-        "name": "Minimum Age: " 
+        "max": 100000000,
+        "step": 1000000,
+        "name": "Minimum Population: " 
       }
     },
     {
@@ -47,7 +47,7 @@
     {"calculate": "datum['Fert. Rate'] === 'N.A.' ? null : +datum['Fert. Rate']", "as": "Fert. Rate"},
     {"calculate": "datum['Med. Age'] === 'N.A.' ? null : +datum['Med. Age']", "as": "Med. Age"},
     {"filter": "datum['Fert. Rate'] !== null && datum['Med. Age'] !== null"},
-    {"filter": "datum['Med. Age'] > Age_Above"}, 
+    {"filter": "datum['Population (2020)'] > Population_Above"}, 
     {"filter": "Continent_selection == null || datum.Continent == Continent_selection"},
     {
       "calculate": "datum['Fert. Rate'] + ' %'",
