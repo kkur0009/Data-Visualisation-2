@@ -1,0 +1,103 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Yearly Population Change by Continent",
+  "description": "A radial chart showing yearly population change by continent.",
+  "width": "container",
+  "data": {
+    "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
+  },
+  "params": [
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "datum['Net Change'] === 'N.A.' ? null : toNumber(datum['Net Change'])",
+      "as": "NetChange"
+    },
+    {
+      "filter": "isDefined(datum.NetChange)"
+    },
+    {
+      "filter": "Continent_selection === null || datum.Continent === Continent_selection"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "sum",
+          "field": "NetChange",
+          "as": "TotalNetChange"
+        }
+      ],
+      "groupby": ["Continent"]
+    },
+    {
+      "calculate": "toNumber(datum['TotalNetChange']) / 1000000",
+      "as": "Population per million"
+    },
+    {
+      "calculate": "datum['Population per million'] + ' M'",
+      "as": "Population per million display"
+    }
+  ],
+  
+  "layer": [
+    {
+      "mark": {"type": "arc", "innerRadius": 20, "stroke": "#fff"}
+    }
+    
+  ],
+  "encoding": {
+    "theta": {"field": "Population per million", "type": "quantitative", "stack": true},
+    "radius": {
+      "field": "Population per million",
+      "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}
+    },
+    "color": {"field": "Continent", "type": "nominal", "scale": {
+      "domain": [
+        "North America",
+        "South America",
+        "Europe",
+        "Africa",
+        "Asia",
+        "Oceania"
+      ],
+      "range": [
+        "#e41a1c",
+        "#984ea3",
+        "#ff7f00",
+        "#a6cee3",
+        "#377eb8",
+        "#a65628"
+      ]
+    }},
+    "tooltip": [
+      {"field": "Continent", "type": "nominal"},
+      {"field": "TotalNetChange", "title": "Population Change", "type": "quantitative", "format": ","},
+      {"field": "Population per million display", "type": "nominal", "title": "Population Change per million"}
+    ]
+  }
+}
