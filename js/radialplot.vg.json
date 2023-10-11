@@ -35,7 +35,7 @@
   ],
   "transform": [
     {
-      "calculate": "datum['Net Change'] == 'N.A.' ? null : toNumber(datum['Net Change'])",
+      "calculate": "datum['Net Change'] === 'N.A.' ? null : toNumber(datum['Net Change'])",
       "as": "NetChange"
     },
     {
