@@ -35,14 +35,14 @@
   ],
   "transform": [
     {
-      "calculate": "datum['Net Change'] === 'N.A.' ? null : toNumber(datum['Net Change'])",
+      "calculate": "datum['Net Change'] == 'N.A.' ? null : toNumber(datum['Net Change'])",
       "as": "NetChange"
     },
     {
       "filter": "isDefined(datum.NetChange)"
     },
     {
-      "filter": "Continent_selection === null || datum.Continent === Continent_selection"
+      "filter": "Continent_selection == null || datum.Continent == Continent_selection"
     },
     {
       "aggregate": [
