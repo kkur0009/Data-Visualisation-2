@@ -63,7 +63,7 @@
       "type": "quantitative",
       "title": "Fertility Rate",
       "axis": {"tickCount": 5},
-      "scale": {"domain": [0, 8]}
+      "scale": {"domain": [0, 7]}
     }
   },
   "layer": [
