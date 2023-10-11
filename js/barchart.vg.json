@@ -45,7 +45,7 @@
         "field": "Continent",
         "scale": {"padding": 0.5},
         "type": "nominal",
-        "title": "Continent Selection",
+        "title": "Continent",
         "axis": {
           "bandPosition": 0,
           "grid": true,
@@ -64,6 +64,7 @@
       },
       "color": {
         "field": "Continent",
+        "title": "Continent Selection",
         "type": "nominal",
         "scale": {
           "domain": [
