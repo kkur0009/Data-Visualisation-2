@@ -1,6 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Change in Population per Continent",
+  "width": "container",
   "data": {
     "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
   },
@@ -36,8 +37,8 @@
     {
       "mark": {
         "type": "arc",
-        "radius2": 100,
-        "radius": 140,
+        "radius2": 70,
+        "radius": 110,
         "tooltip": true
       },
       "encoding": {
@@ -76,8 +77,8 @@
     {
       "mark": {
         "type": "arc",
-        "radius2": 150,
-        "radius": 190,
+        "radius2": 120,
+        "radius": 160,
         "tooltip": true
       },
       "encoding": {
