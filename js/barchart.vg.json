@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "title": "Median Age per Continent",
-    "width": "container",
+    "width": 400,
     "data": {
       "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
     },
@@ -28,7 +28,8 @@
         "continent_highlight": {
         "type": "multi",
         "fields": ["Continent"],
-        "bind": "legend"
+        "bind": "legend",
+        "init": {"Continent": "Europe"}
         }
         },  
     "height": {"step": 45},
@@ -64,25 +65,24 @@
       },
       "color": {
         "field": "Continent",
-        "title": "Continent Selection",
         "type": "nominal",
         "scale": {
           "domain": [
+            "North America",
+            "South America",
+            "Europe",
             "Africa",
             "Asia",
-            "Europe",
-            "North America",
-            "Oceania",
-            "South America"
+            "Oceania"
           ],
           "range": [
-          "rgba(228, 26, 28, 0.35)",
-          "rgba(152, 78, 163, 0.35)",
-          "rgba(255, 127, 0, 1)",
-          "rgba(166, 206, 227, 0.35)",
-          "rgba(55, 126, 184, 0.35)",
-          "rgba(166, 86, 40, 0.35)"
-        ]
+            "#e41a1c",
+            "#984ea3",
+            "#ff7f00",
+            "#a6cee3",
+            "#377eb8",
+            "#a65628"
+          ]
         }
       },
       "opacity": {
