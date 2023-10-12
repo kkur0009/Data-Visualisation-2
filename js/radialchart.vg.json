@@ -81,7 +81,7 @@
         "tooltip": [
           { "field": "Continent", "type": "nominal" },
           { "field": "TotalUrbanPop", "title": "Urban Population", "type": "quantitative", "format": "," },
-          { "field": "Population per million display", "title": "Population Change per million" }
+          { "field": "Population per million display", "title": "Urban Population per million" }
         ]
       }
     }
