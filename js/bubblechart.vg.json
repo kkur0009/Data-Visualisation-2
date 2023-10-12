@@ -85,12 +85,12 @@
           "type": "nominal",
           "scale": {
             "domain": [
-              "North America",
-              "South America",
-              "Europe",
-              "Africa",
-              "Asia",
-              "Oceania"
+               "Africa",
+               "Asia",
+               "Europe",
+               "North America",
+               "Oceania",
+               "South America"
             ],
             "range": [
               "#e41a1c",
