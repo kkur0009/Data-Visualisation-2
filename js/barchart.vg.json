@@ -1,110 +1,109 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Median Age per Continent",
-    "width": 400,
-    "data": {
-      "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Median Age per Continent",
+  "width": 310,
+  "data": {
+    "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum['Med. Age'] === 'N.A.' ? null : +datum['Med. Age']",
+      "as": "MedianAge"
     },
-    "transform": [
-      {
-        "calculate": "datum['Med. Age'] === 'N.A.' ? null : +datum['Med. Age']",
-        "as": "MedianAge"
-      },
-      {
-        "filter": "isValid(datum['MedianAge']) && datum['Continent'] !== 'NA'"
-      },
-      {
-        "aggregate": [
-          {
-            "op": "average",
-            "field": "MedianAge",
-            "as": "Average Median Age"
-          }
-        ],
-        "groupby": ["Continent"]
-      }
-    ],
-    "selection": {
-        "continent_highlight": {
-        "type": "multi",
-        "fields": ["Continent"],
-        "bind": "legend",
-        "init": {"Continent": "Europe"}
+    {
+      "filter": "isValid(datum['MedianAge']) && datum['Continent'] !== 'NA'"
+    },
+    {
+      "aggregate": [
+        {
+          "op": "average",
+          "field": "MedianAge",
+          "as": "Average Median Age"
         }
-        },  
-    "height": {"step": 45},
-    "mark": {"type": "bar", "yOffset": 1, "cornerRadiusEnd": 50, "height": {"band": 1.15}},
-    "encoding": {
-      "x": {
-        "field": "Average Median Age",
-        "title": "Median Age",
-        "type": "quantitative",
-        "scale": {"zero": true},
-        "axis": {"format": ".2f", "grid": false}
-      },
-      "y": {
-        "field": "Continent",
-        "scale": {"padding": 0.5},
-        "type": "nominal",
-        "title": "Continent",
-        "axis": {
-          "bandPosition": 0,
-          "grid": true,
-          "domain": false,
-          "ticks": false,
-          "labelAlign": "left",
-          "labelBaseline": "bottom",
-          "labelPadding": -5,
-          "labelOffset": -15,
-          "titleX": 5,
-          "titleY": -5,
-          "titleAngle": 0,
-          "titleAlign": "left",
-          "scale": {"zero": true}
-        }
-      },
-      "color": {
-        "field": "Continent",
-        "type": "nominal",
-        "scale": {
-          "domain": [
-            "North America",
-            "South America",
-            "Europe",
-            "Africa",
-            "Asia",
-            "Oceania"
-          ],
-          "range": [
-            "#e41a1c",
-            "#984ea3",
-            "#ff7f00",
-            "#a6cee3",
-            "#377eb8",
-            "#a65628"
-          ]
-        }
-      },
-      "opacity": {
-        "condition": {"selection": "continent_highlight", "value": 0.8},
-        "value": 0.2},
-        "legend": {"format": ".1s"},
-    "tooltip": [
-        {"field": "Average Median Age", "title": "Average Median Age", "type": "quantitative", "format": ".2f"}
       ],
-      "layer": [{
-        "mark": "bar"
-      }, {
-        "mark": {
-          "type": "text",
-          "align": "left",
-          "baseline": "middle",
-          "dx": 3
-        },
-        "encoding": {
-          "text": {"field": "Average Median Age", "type": "quantitative"}
-        }
-      }]
+      "groupby": ["Continent"]
     }
+  ],
+  "selection": {
+      "continent_highlight": {
+      "type": "multi",
+      "fields": ["Continent"],
+      "bind": "legend",
+      "init": {"Continent": "Europe"}
+      }
+      },  
+  "height": {"step": 45},
+  "mark": {"type": "bar", "yOffset": 1, "cornerRadiusEnd": 50, "height": {"band": 1.15}},
+  "encoding": {
+    "x": {
+      "field": "Average Median Age",
+      "title": "Median Age",
+      "type": "quantitative",
+      "scale": {"zero": true},
+      "axis": {"format": ".2f", "grid": false}
+    },
+    "y": {
+      "field": "Continent",
+      "scale": {"padding": 0.5},
+      "type": "nominal",
+      "title": "Continent",
+      "axis": {
+        "bandPosition": 0,
+        "grid": true,
+        "domain": false,
+        "ticks": false,
+        "labelAlign": "left",
+        "labelBaseline": "bottom",
+        "labelPadding": -5,
+        "labelOffset": -15,
+        "titleX": 5,
+        "titleY": -5,
+        "titleAngle": 0,
+        "titleAlign": "left",
+        "scale": {"zero": true}
+      }
+    },
+    "color": {
+      "field": "Continent",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "range": [
+          "#e41a1c",
+          "#984ea3",
+          "#ff7f00",
+          "#a6cee3",
+          "#377eb8",
+          "#a65628"
+        ]
+      }
+    },
+    "opacity": {
+      "condition": {"selection": "continent_highlight", "value": 0.8},
+      "value": 0.2},
+      "legend": {"format": ".1s"},
+  "tooltip": [
+      {"field": "Average Median Age", "title": "Average Median Age", "type": "quantitative", "format": ".2f"}
+    ],
+    "layer": [{
+      "mark": "bar"
+    }, {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 3
+      },
+      "encoding": {
+        "text": {"field": "Average Median Age", "type": "quantitative"}
+      }
+    }]
   }
-  
+}
