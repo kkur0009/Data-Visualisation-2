@@ -86,17 +86,18 @@
 
     <!-- pure grid group -->
     <div class="pure-g">
-      <div class="pure-u-2-3">
+      <div class="pure-u-1-2">
         <div id="vis2" class="vis-container"></div>
       </div>
-      <div class="pure-u-1-3">
+      <div class="pure-u-1-2">
         <div class="description description-right">
-          <h2>Fertility Rate Vs Migration</h2>
+          <h2>Bubble Chart</h2>
           <p>The first and second columns are combined. Lorem ipsum dolor sit amet,
             consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa sapien
             faucibus et molestie ac feugiat sed. Egestas purus viverra accumsan in nisl.</p>
         </div>
       </div>
+    </div>
 
       <div class="pure-g">
         <div class="pure-u-1-2">
@@ -114,7 +115,7 @@
       </div>
 
       <div class="pure-g">
-        <div class="pure-u-1-3">
+        <div class="pure-u-1-2">
           <div class="description description-right">
             <h2>Median Age</h2>
             <p>The first column contains text and the second column contains a visualisation.
@@ -123,12 +124,10 @@
               dolore magna aliqua. Massa sapien faucibus et molestie ac feugiat sed. </p>
           </div>
         </div>
-        <div class="pure-u-2-3">
+        <div class="pure-u-1-2">
           <div id="vis4" class="vis-container"></div>
         </div>
       </div>
-
-    </div>
     <!-- end pure grid group -->
 
     <div class="pure-g">
@@ -159,7 +158,7 @@
     var specVis2 = "js/bubblechart.vg.json";
     var specVis3 = "js/radialchart.vg.json";
     var specVis4 = "js/barchart.vg.json";
-    var specVis5 = "js/donutchart.vg.json;
+    var specVis5 = "js/donutchart.vg.json";
 
     vegaEmbed('#vis1', specVis1, { "actions": false });
 
@@ -170,6 +169,8 @@
     vegaEmbed('#vis3', specVis3, { "actions": false });
 
     vegaEmbed('#vis4', specVis4, { "actions": false });
+
+    vegaEmbed('#vis5', specVis5, { "actions": false });
 
     // vegaEmbed('#vis3', specVis1, { "actions": false }).then(function (result) {
     //   // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
@@ -182,4 +183,3 @@
 </body>
 
 </html>
-
