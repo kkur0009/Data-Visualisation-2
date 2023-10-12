@@ -1,0 +1,88 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Urban Population Change by Continent",
+  "description": "A radial chart showing yearly urban population change by continent.",
+  "width": "container",
+  "data": {
+    "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
+  },
+  "params": [
+    {
+      "name": "Population_Above",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 100000000,
+        "step": 1000000,
+        "name": "Minimum Population: " 
+      }
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "datum['Urban Pop'] === 'N.A.' ? null : toNumber(datum['Urban Pop'])",
+      "as": "UrbanPop"
+    },
+    {
+      "filter": "isDefined(datum.UrbanPop)"
+    },
+    {"filter": "datum['UrbanPop'] > Population_Above"}, 
+    {
+      "aggregate": [
+        {
+          "op": "sum",
+          "field": "UrbanPop",
+          "as": "TotalUrbanPop"
+        }
+      ],
+      "groupby": ["Continent"]
+    },
+    {
+      "calculate": "toNumber(datum['TotalUrbanPop']) / 1000000",
+      "as": "Population per million"
+    },
+    {
+      "calculate": "format(datum['Population per million'], '.2f') + ' M'",
+      "as": "Population per million display"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {"type": "arc", "innerRadius": 20, "stroke": "#fff"}
+    }
+  ],
+  "encoding": {
+    "theta": {"field": "Population per million", "type": "quantitative", "stack": true},
+    "radius": {
+      "field": "Population per million",
+      "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}
+    },
+    "color": {
+    "field": "Continent",
+    "type": "nominal",
+    "scale": {
+      "domain": [
+        "North America",
+        "South America",
+        "Europe",
+        "Africa",
+        "Asia",
+        "Oceania"
+      ],
+      "range": [
+        "rgba(228, 26, 28, 0.35)", 
+        "rgba(152, 78, 163, 0.35)", 
+        "rgba(255, 127, 0, 0.35)",  
+        "rgba(166, 206, 227, 0.35)", 
+        "rgba(55, 126, 184, 1)",   
+        "rgba(166, 86, 40, 0.35)"   
+      ]},
+      "tooltip": [
+        {"field": "Continent", "type": "nominal"},
+        {"field": "TotalUrbanPop", "title": "Urban Population Change", "type": "quantitative", "format": ","},
+        {"field": "Population per million display", "type": "nominal", "title": "Population Change per million"}
+      ]
+    }
+  }
+}
