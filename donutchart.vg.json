@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Change in Population per Continent",
+  "data": {
+    "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(replace(datum['YearlyChange'], '%', ''))",
+      "as": "YearlyChange"
+    },
+    {
+      "calculate": "toNumber(replace(datum['NetChange'], ',', ''))",
+      "as": "NetChange"
+    },
+    {
+      "filter": "isValid(datum['NetChange']) && datum['Continent'] !== 'NA'"
+    },
+    {
+      "groupby": ["Continent"],
+      "aggregate": [
+        {
+          "op": "average",
+          "field": "YearlyChange",
+          "as": "YearlyChange"
+        },
+        {
+          "op": "average",
+          "field": "NetChange",
+          "as": "NetChange"
+        }
+      ]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "arc",
+        "radius2": 100,
+        "radius": 140,
+        "tooltip": true
+      },
+      "encoding": {
+        "tooltip": [
+          { "field": "Continent", "title": "Continent" },
+          { "field": "YearlyChange", "title": "Percentage Change", "type": "quantitative", "format": ".2f" }
+        ],
+        "theta": {
+          "field": "YearlyChange",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Africa",
+              "Asia",
+              "Europe",
+              "North America",
+              "Oceania",
+              "South America"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "arc",
+        "radius2": 150,
+        "radius": 190,
+        "tooltip": true
+      },
+      "encoding": {
+        "tooltip": [
+          { "field": "Continent", "title": "Continent:" },
+          { "field": "NetChange", "title": "Population Change:", "type": "quantitative", "format": ".2f" }
+        ],
+        "theta": {
+          "field": "NetChange",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Africa",
+              "Asia",
+              "Europe",
+              "North America",
+              "Oceania",
+              "South America"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "resolve": {"scale": {"theta": "independent"}},
+  "view": {"stroke": null}
+}
