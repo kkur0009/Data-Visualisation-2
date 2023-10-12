@@ -20,6 +20,7 @@ body {
 
 .vis-container {
   width: 100%;
+  border: 1px solid black;
 }
 
 .description h2,
