@@ -33,6 +33,14 @@
       ]
     }
   ],
+  "selection": {
+    "continent_highlight": {
+    "type": "multi",
+    "fields": ["Continent"],
+    "bind": "legend",
+    "init": {"Continent": "Europe"}
+    }
+    },  
   "layer": [
     {
       "mark": {
@@ -63,12 +71,12 @@
               "South America"
             ],
             "range": [
-              "#e41a1c",
-              "#984ea3",
-              "#ff7f00",
-              "#a6cee3",
-              "#377eb8",
-              "#a65628"
+              "#a6d854",
+              "#66c2a5",
+              "#8da0cb",
+              "#e78ac3",
+              "#ffd92f",
+              "#80b1d3"
             ]
           }
         }
@@ -83,8 +91,8 @@
       },
       "encoding": {
         "tooltip": [
-          { "field": "Continent", "title": "Continent:" },
-          { "field": "NetChange", "title": "Population Change:", "type": "quantitative", "format": ".2f" }
+          { "field": "Continent", "title": "Continent" },
+          { "field": "NetChange", "title": "Population Change", "type": "quantitative", "format": ".2f" }
         ],
         "theta": {
           "field": "NetChange",
@@ -103,12 +111,12 @@
               "South America"
             ],
             "range": [
-              "#e41a1c",
-              "#984ea3",
-              "#ff7f00",
-              "#a6cee3",
-              "#377eb8",
-              "#a65628"
+              "#a6d854",
+              "#66c2a5",
+              "#8da0cb",
+              "#e78ac3",
+              "#ffd92f",
+              "#80b1d3"
             ]
           }
         }
