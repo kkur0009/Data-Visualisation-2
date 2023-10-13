@@ -23,21 +23,21 @@
         "input": "select",
         "options": [
           null,
-          "North America",
-          "South America",
-          "Europe",
           "Africa",
           "Asia",
-          "Oceania"
+          "Europe",
+          "North America",
+          "Oceania",
+          "South America"
         ],
         "labels": [
           "Show All",
-          "North America",
-          "South America",
-          "Europe",
           "Africa",
           "Asia",
-          "Oceania"
+          "Europe",
+          "North America",
+          "Oceania",
+          "South America"
         ],
         "name": "Continent Selection: " 
       }
@@ -93,18 +93,19 @@
                "South America"
             ],
             "range": [
-              "#e41a1c",
-              "#984ea3",
-              "#ff7f00",
-              "#a6cee3",
-              "#377eb8",
-              "#a65628"
+              "#a6d854",
+              "#66c2a5",
+              "#8da0cb",
+              "#e78ac3",
+              "#ffd92f",
+              "#80b1d3"
             ]
           }
         },
         "opacity": {"value": 0.6},
         "tooltip": [
           {"field": "Country", "type": "nominal"},
+          {"field": "Migrants (net)", "title": "Number of Migrants", "type": "nominal"},
           {"field": "Fert. Rate", "title": "Fertility Rate", "type": "nominal"}
       ]      
       }
