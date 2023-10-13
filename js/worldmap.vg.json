@@ -82,6 +82,10 @@
         {
           "calculate": "toNumber(datum['Population (2020)']) / 1000000",
           "as": "Population per million"
+        },
+        {
+          "calculate": "format(datum['Population per million'], '.2f') + ' M'",
+          "as": "Population per million display"
         }
       ],
       "mark": {"type": "geoshape", "stroke": "white"},
@@ -93,7 +97,13 @@
           "scale": {
             "type": "threshold",
             "domain": [1, 10, 20, 30, 40, 50, 60, 70],
-            "range": ["#fbfbb5", "edf8b1", "#c7e9b4", "#7fcdbb", "#41b6c4", "#1d91c0", "#225ea8", "#0c2c84"]
+            "range": ["#fbfbb5", "edf8b1", "#d9f0a3", 
+            "#addd8e",
+            "#78c679",
+            "#41ab5d",
+            "#238443",
+            "#005a32"]
+            
           }
         },
         "tooltip": [
@@ -104,7 +114,7 @@
             "format": ".2f",
             "title": "Population"
           },
-          {"field": "Population per million", "type": "quantitative", "format": ".2f", "title": "Population per million"}
+          {"field": "Population per million display", "type": "nominal", "title": "Population per million"}
         ]
       }
     }
