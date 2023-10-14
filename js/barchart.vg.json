@@ -1,7 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Median Age by Continent",
-  "width": "container",
+  "length": 500, 
+  "width": 300,
   "data": {
     "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
   },

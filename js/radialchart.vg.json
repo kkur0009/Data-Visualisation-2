@@ -2,7 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Urban Population Change by Continent",
   "description": "A radial chart showing yearly urban population change by continent.",
-  "width": "container",
+  "height": 300,
+  "width": 300,
   "data": {
     "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
   },
@@ -80,8 +81,7 @@
         },
         "tooltip": [
           { "field": "Continent", "type": "nominal" },
-          { "field": "TotalUrbanPop", "title": "Urban Population", "type": "quantitative", "format": "," },
-          { "field": "Population per million display", "title": "Urban Population per million" }
+          { "field": "Population per million display", "title": "Urban Population (million)" }
         ]
       }
     }
