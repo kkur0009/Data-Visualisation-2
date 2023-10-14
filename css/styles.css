@@ -10,7 +10,10 @@ h1 {
 }
 
 body {
-  background-color: rgba(127, 205, 187, 0.4);
+  background-color: rgba(231,253,229,255); 
+  background-image: url('../data/image.png');
+  background-size: 50%;
+  background-repeat: repeat;
 }
 
 .page {
