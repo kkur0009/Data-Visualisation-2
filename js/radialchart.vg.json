@@ -3,7 +3,7 @@
   "title": "Urban Population Change by Continent",
   "description": "A radial chart showing yearly urban population change by continent.",
   "height": 300,
-  "width": 300,
+  "width": 310,
   "data": {
     "url": "https://raw.githubusercontent.com/kkur0009/Data-Visualisation-2/main/data/population.csv"
   },

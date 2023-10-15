@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Data Visualisation 2</title>
+  <title>Data Visualisation</title>
   <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
@@ -29,10 +29,14 @@
   <div class="page">
 
     <!-- pure grid group -->
-    <div class="pure-g">
+    <div class="pure-g1">
       <div class="pure-u-1-1">
         <h1>World Population in 2020</h1>
       </div>
+    </div>
+    
+
+    <div class="pure-g">
       <div class="pure-u-1-1">
         <div class="centered">
           <p>This visualisation caters to researchers, policymakers, and the general public. 
@@ -41,11 +45,14 @@
             global population dynamics based on various variables. The data is based on the world population in 2020.</p>
         </div>
       </div>
+    </div>
+
+    <div class="pure-g">
       <div class="pure-u-1-1">
         <h2>Population by Country</h2>
         <div id="vis1" class="vis-container pure-u-1-1"></div>
+      </div>
     
-      <div class="pure-g">
         <div class="pure-u-1-2">
           <div class="description description-left">
             <p>The map illustrates the global population distribution by country for the year 2020. Using a gradient 
@@ -64,14 +71,13 @@
               more detailed exploration of specific regions.  </p>
           </div>
         </div>
-        </div>
-      </div>
+    </div>
 
+    <div class="pure-g">
       <div class="pure-u-1-1">
         <h2>Fertility Rate vs Migrantions</h2>
         <div id="vis2" class="vis-container"></div>
       </div>
-      <div class="pure-g margin-bottom">
         <div class="pure-u-1-2">
           <div class="description description-left">
             <p> The bubble chart depicts the relationship between a country's fertility rate and its number of migrants 
@@ -93,8 +99,7 @@
               users the flexibility to narrow down the analysis to specific regions or countries of interest.</p>
           </div>
         </div>
-        </div>
-    </div>
+      </div>
 
     <!-- pure grid group -->
       <div class="pure-g margin-bottom">
@@ -150,7 +155,7 @@
         </div>
 
         <div class="pure-u-1-2">
-          <div class="description description-left">
+          <div class="description description-right">
             <p>The graph depicts the median age by continent, 
               represented through horizontal bars of varying lengths. 
               <span style="color: #8da0cb"><b>Europe</b></span> stands out with the highest median age, 
@@ -173,7 +178,7 @@
         </div>
       </div>
 
-    <div class="pure-g margin-bottom">
+    <div class="pure-g2">
       <div class="pure-u-1-1 small-font">
         <p>This visualisation is created by Kimberly Kurniawan.</p>
           <p>The datasource used is <a href="https://www.kaggle.com/datasets/tanuprabhu/population-by-country-2020" target=" _blank">Population by Country - 2020</href></a> & <a href="https://www.kaggle.com/datasets/iamsouravbanerjee/world-population-dataset" target=" _blank">World Population Dataset</href>.</a></p>
